@@ -1,0 +1,56 @@
+{
+  "preamble": {
+    "title": "cardano2vn/contract",
+    "description": "Aiken contracts for project 'cardano2vn/contract'",
+    "version": "0.0.0",
+    "plutusVersion": "v3",
+    "compiler": {
+      "name": "Aiken",
+      "version": "v1.1.21+42babe5"
+    },
+    "license": "Apache-2.0"
+  },
+  "validators": [
+    {
+      "title": "treasury.treasury.spend",
+      "datum": {
+        "title": "_datum_option",
+        "schema": {
+          "$ref": "#/definitions/Data"
+        }
+      },
+      "redeemer": {
+        "title": "_redeemer",
+        "schema": {
+          "$ref": "#/definitions/Void"
+        }
+      },
+      "compiledCode": "587e01010029800aba2aba1aab9faab9eaab9dab9a48888896600264653001300700198039804000cc01c0092225980099b8748008c01cdd500144ca60026016003300b300c001acc004cdc3a400060106ea80122b300130093754009149a2c80522c80392224a23008375400516401830070013003375400f149a26cac80081",
+      "hash": "c24cdcd02db5ce526190c6a8e97ad4fbe538ca577d547edc4a3dffba"
+    },
+    {
+      "title": "treasury.treasury.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "587e01010029800aba2aba1aab9faab9eaab9dab9a48888896600264653001300700198039804000cc01c0092225980099b8748008c01cdd500144ca60026016003300b300c001acc004cdc3a400060106ea80122b300130093754009149a2c80522c80392224a23008375400516401830070013003375400f149a26cac80081",
+      "hash": "c24cdcd02db5ce526190c6a8e97ad4fbe538ca577d547edc4a3dffba"
+    }
+  ],
+  "definitions": {
+    "Data": {
+      "title": "Data",
+      "description": "Any Plutus data."
+    },
+    "Void": {
+      "title": "Unit",
+      "anyOf": [
+        {
+          "dataType": "constructor",
+          "index": 0,
+          "fields": []
+        }
+      ]
+    }
+  }
+}
