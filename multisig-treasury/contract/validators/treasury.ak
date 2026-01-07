@@ -1,16 +1,35 @@
 use cardano/transaction.{OutputReference, Transaction}
 use aiken/collection/list
 use aiken/crypto.{VerificationKeyHash}
-use
+use cardano/address.{Address}
 
-validator treasury {
+type Datum {
+  amount: Int,
+  receiver: Address,
+  signatures: List<Address>,
+}
+
+type Redeemer {
+  Sign
+  Update
+  Execute
+}
+
+validator treasury (admins: List<Address>, threshold: Int, allowance: Int) {
   spend(
-    _datum_option: Option<Data>,
-    _redeemer: Void,
-    _output_reference: OutputReference,
-    _transaction: Transaction,
+    datum_option: Option<Datum>,
+    redeemer: Redeemer,
+    output_reference: OutputReference,
+    transaction: Transaction,
   ) {
-    True
+    expect Some(datum) = datum_option
+    let Transaction { extra_signatories, .. } = transaction
+
+    when redeemer is {
+      Sign -> True
+      Update -> True
+      Execute -> True
+    }
   }
 
   else(_) {

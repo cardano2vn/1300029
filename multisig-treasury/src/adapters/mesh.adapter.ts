@@ -10,11 +10,11 @@ import {
     serializePlutusScript,
     UTxO,
 } from "@meshsdk/core";
-import { blockfrostProvider } from "@/providers/blockfrost.provider";
-import plutus from "@/contract/plutus.json";
-import { Plutus } from "@/types";
-import { title } from "@/constants/common.constant";
-import { APP_NETWORK_ID } from "@/constants/enviroments.constant";
+import { blockfrostProvider } from "../providers/blockfrost.provider";
+import plutus from "../../contract/plutus.json";
+import { Plutus } from "../types";
+import { title } from "../constants/common.constant";
+import { APP_NETWORK_ID } from "../constants/enviroments.constant";
 
 /**
  * @description
@@ -181,4 +181,5 @@ export class MeshAdapter {
             );
         })[0];
     };
+
 }
