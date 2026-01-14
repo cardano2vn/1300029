@@ -47,23 +47,23 @@ validator treasury(threshold: Int, allowance: Int) {
         when list.length(datum_input.signers) >= threshold is {
           True -> {
             let output_receiver = output_by_addr(outputs, datum_input.receiver)
-            when lovelace_of(output_receiver.value) <= allowance is {
+            when lovelace_of(input.output.value) <= allowance is {
               True ->
-                if lovelace_of(output_receiver.value) == allowance {
+                if lovelace_of(input.output.value) == allowance {
                   lovelace_of(output_receiver.value) == allowance
                 } else {
-                  let output =
-                    output_by_addr_value(outputs, script_address, token)
+                  let output = output_by_addr(outputs, script_address)
                   expect InlineDatum(datum_output_raw) = output.datum
-                  expect datum_output: TreasuryDatum = datum_output_raw
+                  expect datum_output: Datum = datum_output_raw
+
                   and {
-                    datum_input.owners == datum_output.owners,
-                    datum_input.signers == datum_output.signers,
-                    datum_input.receiver == datum_output.receiver,
                     lovelace_of(output_receiver.value) == allowance,
                     lovelace_of(output.value) + allowance >= lovelace_of(
                       input.output.value,
                     ),
+                    datum_input.receiver == datum_output.receiver,
+                    datum_input.owners == datum_output.owners,
+                    list.length(datum_output.signers) == 0,
                   }
                 }
               False -> False
