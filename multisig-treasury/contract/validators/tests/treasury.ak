@@ -200,7 +200,7 @@ test success_execute_allowance() {
   let signer2_output: Address = mock_pub_key_address(2, None)
   let signer3_output: Address = mock_pub_key_address(3, None)
   let signers_output: List<Address> =
-    [signer1_output, signer2_output, signer3_output]
+    []
 
   let datum_output =
     TreasuryDatum {
